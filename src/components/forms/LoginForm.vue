@@ -1,12 +1,15 @@
 <script setup>
 import { ref } from "vue";
-import { useAuthStore } from "@/stores/authStore";
+
 import { useRouter } from "vue-router";
+
+import { useAuthStore } from "@/stores/authStore";
+
+const authStore = useAuthStore();
+const router = useRouter();
 
 const username = ref("");
 const errorMessage = ref("");
-const authStore = useAuthStore();
-const router = useRouter();
 
 async function handleLogin() {
   const trimmedUsername = username.value?.trim();

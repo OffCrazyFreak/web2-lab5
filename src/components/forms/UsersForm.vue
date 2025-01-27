@@ -50,9 +50,9 @@ watch(username, (newValue) => {
     <fieldset>
       <legend>User form</legend>
       <div class="username-field">
-        <label for="username"
-          >Username{{ isEditing ? ` (ID: ${user.id})` : "" }}:</label
-        >
+        <label for="username">
+          Username{{ isEditing ? ` (ID: ${user.id})` : "" }}:
+        </label>
         <input type="search" id="username" v-model="username" />
       </div>
 

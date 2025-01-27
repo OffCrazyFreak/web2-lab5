@@ -5,12 +5,18 @@ export const useUsersStore = defineStore("users", function () {
   const users = ref([]);
 
   async function fetchUsers() {
-    try {
-      const response = await fetch("/api/users");
-      users.value = await response.json();
-    } catch (error) {
-      console.error("Failed to fetch users:", error);
-    }
+    users.value = [
+      { id: 1, username: "John Doe" },
+      { id: 2, username: "Jane Smith" },
+    ];
+
+    // TODO: Implement fetching users from the API
+    // try {
+    //   const response = await fetch("/api/users");
+    //   users.value = await response.json();
+    // } catch (error) {
+    //   console.error("Failed to fetch users:", error);
+    // }
   }
 
   async function fetchUserById(userId) {

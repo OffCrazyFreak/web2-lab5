@@ -1,17 +1,16 @@
 <script setup>
 import { ref } from "vue";
+
 import { useRouter } from "vue-router";
+
 import { useAuthStore } from "@/stores/authStore";
+import { useUsersStore } from "@/stores/usersStore";
 
 const emit = defineEmits(["edit-user"]);
 
 const router = useRouter();
 const authStore = useAuthStore();
-
-const users = ref([
-  { id: 1, username: "John Doe" },
-  { id: 2, username: "Jane Smith" },
-]);
+const usersStore = useUsersStore();
 
 function viewUser(id) {
   router.push("/users/" + id);
@@ -35,7 +34,7 @@ function deleteUser(id) {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="user in users" :key="user.id">
+      <tr v-for="user in usersStore.users" :key="user.id">
         <td class="table-username">
           <p tabindex="0" @click="viewUser(user.id)">
             {{ user.username }}
