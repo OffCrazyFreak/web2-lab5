@@ -1,8 +1,11 @@
 <script setup>
 import { ref } from "vue";
 
+import { useRouter } from "vue-router";
+
 import { useAuthStore } from "@/stores/authStore";
 
+const router = useRouter();
 const authStore = useAuthStore();
 </script>
 
@@ -30,7 +33,7 @@ const authStore = useAuthStore();
         @click="
           authStore.getUserAuthStatus
             ? authStore.logoutUser()
-            : authStore.loginUser()
+            : router.push('/login')
         "
       >
         <p v-if="!authStore.getUserAuthStatus">Login</p>
@@ -80,28 +83,5 @@ nav > *:hover {
 .nav-link:hover {
   text-decoration: underline;
   color: #ccc;
-}
-
-.login-button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.25rem;
-  background-color: #eee;
-  color: #333;
-  font-weight: bold;
-  cursor: pointer;
-
-  transition: all 0.3s ease-in-out;
-  font-weight: bold;
-}
-
-.login-button:hover {
-  background-color: #ccc;
-  transform: scale(1.05);
-}
-
-.login-button > p {
-  font-size: 1rem;
-  font-weight: bold;
 }
 </style>
