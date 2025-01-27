@@ -17,7 +17,6 @@ authStore.autoLogin();
 
 <style scoped>
 #app {
-  /* so the footer sticks to the bottom of page with margin-top: auto; */
   display: flex;
   flex-direction: column;
   min-height: 100%;

@@ -11,26 +11,27 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
+      name: "Home",
       component: HomeView,
     },
     {
       path: "/login",
-      name: "login",
+      name: "Login",
       component: LoginView,
     },
     {
       path: "/users",
-      name: "users",
+      name: "Users",
       component: UsersView,
     },
     {
       path: "/users/:id",
-      name: "user",
+      name: "User",
       component: UserView,
     },
     {
       path: "/:catchAll(.*)*",
+      name: "Page not found",
       component: NotFoundView,
     },
   ],
@@ -43,6 +44,11 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
+});
+
+router.afterEach((to) => {
+  const baseTitle = "WEB 2 Lab 5";
+  document.title = `${baseTitle} - ${to.name}`;
 });
 
 export default router;
