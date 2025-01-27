@@ -2,7 +2,7 @@
 
 ## Postavljanje aplikacije
 
-Package manager jer pnpm, sa npm-om se može pokrenuti tako da se izbriše pnpm-lock.yaml pa nakon toga klasične naredbe za npm (install, run dev, build).
+Package manager jer pnpm, ali se možemo pokrenuti i sa npm-om (možda morate izbrisati pnpm-lock.yaml) pa nakon toga klasične naredbe za npm (install, run dev, build).
 
 ```sh
 pnpm install
