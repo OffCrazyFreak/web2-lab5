@@ -19,5 +19,3 @@ function handleEditUser(user) {
     <UsersTable @edit-user="handleEditUser" />
   </main>
 </template>
-
-<style scoped></style>

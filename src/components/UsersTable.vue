@@ -1,8 +1,6 @@
 <script setup>
 import { ref } from "vue";
-
 import { useRouter } from "vue-router";
-
 import { useAuthStore } from "@/stores/authStore";
 
 const emit = defineEmits(["edit-user"]);

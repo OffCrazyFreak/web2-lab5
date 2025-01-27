@@ -36,8 +36,7 @@ const authStore = useAuthStore();
             : router.push('/login')
         "
       >
-        <p v-if="!authStore.getUserAuthStatus">Login</p>
-        <p v-else>Logout</p>
+        {{ !authStore.getUserAuthStatus ? "Login" : "Logout" }}
       </button>
     </div>
   </header>

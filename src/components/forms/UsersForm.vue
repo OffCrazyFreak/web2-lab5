@@ -2,9 +2,12 @@
 import { ref, watch } from "vue";
 import { useUsersStore } from "@/stores/usersStore";
 
-const emit = defineEmits(["edit-user"]);
+const props = defineProps({
+  user: Object,
+});
 
 const usersStore = useUsersStore();
+
 const username = ref("");
 const isEditing = ref(false);
 const userId = ref(null);
@@ -25,12 +28,17 @@ function resetForm() {
 }
 
 watch(
-  () => emit("edit-user"),
+  () => props.user,
   (user) => {
-    username.value = user.username;
-    isEditing.value = true;
-    userId.value = user.id;
-  }
+    if (user) {
+      username.value = user.username;
+      isEditing.value = true;
+      userId.value = user.id;
+    } else {
+      resetForm();
+    }
+  },
+  { immediate: true }
 );
 </script>
 
@@ -43,7 +51,11 @@ watch(
         <input type="text" id="username" v-model="username" />
       </div>
 
-      <button type="submit">{{ isEditing ? "Save User" : "Add User" }}</button>
+      <button type="submit">
+        <font-awesome-icon v-if="!isEditing" icon="plus-circle" />
+        <font-awesome-icon v-else icon="save" />
+        {{ !isEditing ? "Add" : "Save" }} user
+      </button>
     </fieldset>
   </form>
 </template>
