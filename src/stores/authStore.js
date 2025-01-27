@@ -7,35 +7,35 @@ export const useAuthStore = defineStore("auth", () => {
   const username = ref(localStorage.getItem("web2_lab5-username") || "");
 
   async function checkUsername(username) {
-    return true;
-
-    // TODO: connect to the API
     try {
-      const response = await fetch(`/api/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username: username }),
-      });
+      const response = await fetch(
+        "https://run.mocky.io/v3/6f398628-ed97-4d8d-a16f-96f2e7b8144b",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username: username }),
+        }
+      );
       if (response.ok) {
-        console.log("Login successful");
+        console.log("Username verified successfully");
         return true;
       } else {
-        console.error("Failed to add user:", response.statusText);
+        console.error("Failed to verify username:", response.statusText);
+        return false;
       }
-
-      c;
     } catch (error) {
-      console.error("Failed to check username:", error);
+      console.error("Error checking username:", error);
       return false;
     }
   }
 
-  async function loginUser(username) {
+  async function loginUser(inputUsername) {
     isLoggedIn.value = true;
-
-    localStorage.setItem("web2_lab5-username", username);
+    username.value = inputUsername;
+    localStorage.setItem("web2_lab5-username", inputUsername);
+    console.log("User logged in:", inputUsername);
   }
 
   function logoutUser() {
@@ -43,9 +43,11 @@ export const useAuthStore = defineStore("auth", () => {
     username.value = "";
     localStorage.removeItem("web2_lab5-username");
 
-    if (router.currentRoute.value.path === "/users") {
+    if (/^\/users(\/.*)?$/.test(router.currentRoute.value.path)) {
       router.push("/");
     }
+
+    console.log("User logged out");
   }
 
   async function autoLogin() {
@@ -53,7 +55,7 @@ export const useAuthStore = defineStore("auth", () => {
     if (storedUsername) {
       const userExists = await checkUsername(storedUsername);
       if (userExists) {
-        loginUser(storedUsername);
+        await loginUser(storedUsername);
       } else {
         logoutUser();
       }

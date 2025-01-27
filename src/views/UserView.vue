@@ -1,14 +1,29 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useUsersStore } from "@/stores/usersStore";
+import { useRoute } from "vue-router";
 
-import { useRouter } from "vue-router";
+const route = useRoute();
+const usersStore = useUsersStore();
 
-const route = useRouter().currentRoute;
-const userId = ref(route.value.params.id);
+const userId = ref(route.params.id);
+const username = ref("");
+
+onMounted(async () => {
+  const user = await usersStore.fetchUserById(userId.value);
+  if (user) {
+    username.value = user.username;
+  } else {
+    username.value = "User not found";
+  }
+});
 </script>
 
 <template>
-  <main>User with id: {{ $route.params.id }}</main>
+  <main>
+    <p>User with ID: {{ userId }}</p>
+    <p>Username via fetch: {{ username }}</p>
+  </main>
 </template>
 
 <style scoped></style>
