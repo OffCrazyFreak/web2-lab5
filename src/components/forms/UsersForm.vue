@@ -10,11 +10,10 @@ const usersStore = useUsersStore();
 
 const username = ref("");
 const isEditing = ref(false);
-const userId = ref(null);
 
 function handleSubmit() {
   if (isEditing.value) {
-    usersStore.editUser(userId.value, { username: username.value.trim() });
+    usersStore.editUser(props.user.id, { username: username.value.trim() });
   } else {
     usersStore.addUser({ username: username.value });
   }
@@ -24,7 +23,6 @@ function handleSubmit() {
 function resetForm() {
   username.value = "";
   isEditing.value = false;
-  userId.value = null;
 }
 
 watch(
@@ -33,7 +31,6 @@ watch(
     if (user) {
       username.value = user.username;
       isEditing.value = true;
-      userId.value = user.id;
     } else {
       resetForm();
     }
@@ -43,8 +40,7 @@ watch(
 
 watch(username, (newValue) => {
   if (newValue.trim() === "") {
-    isEditing.value = false;
-    userId.value = null;
+    resetForm();
   }
 });
 </script>
@@ -54,8 +50,10 @@ watch(username, (newValue) => {
     <fieldset>
       <legend>User form</legend>
       <div class="username-field">
-        <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username" />
+        <label for="username"
+          >Username{{ isEditing ? ` (ID: ${user.id})` : "" }}:</label
+        >
+        <input type="search" id="username" v-model="username" />
       </div>
 
       <button type="submit">
