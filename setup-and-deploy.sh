@@ -34,7 +34,7 @@ else
 fi
 
 # Build the React application
-echo "Building React application..."
+echo "Building Vite application..."
 cd $REACT_APP_DIR
 npm install
 npm run build
@@ -50,7 +50,7 @@ cd - > /dev/null
 # Create the app directory in Nginx's html folder and copy build files
 echo "Deploying the app to Nginx..."
 sudo mkdir -p $NGINX_HTML_DIR
-sudo cp -r $REACT_APP_DIR/build/* $NGINX_HTML_DIR/
+sudo cp -r $REACT_APP_DIR/dist/* $NGINX_HTML_DIR/
 
 echo "Initial deployment completed successfully!"
 
