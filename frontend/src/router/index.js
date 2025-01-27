@@ -37,14 +37,14 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to, from, next) => {
-  const authStore = useAuthStore();
-  if (to.path.startsWith("/users") && !authStore.getUserAuthStatus) {
-    next("/");
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   const authStore = useAuthStore();
+//   if (to.path.startsWith("/users") && !authStore.getUserAuthStatus) {
+//     next("/");
+//   } else {
+//     next();
+//   }
+// });
 
 router.afterEach((to) => {
   const baseTitle = "WEB 2 Lab 5";
