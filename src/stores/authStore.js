@@ -10,14 +10,26 @@ export const useAuthStore = defineStore("auth", () => {
     return true;
 
     // TODO: connect to the API
-    // try {
-    //   const response = await fetch(`/api/users?username=${username}`);
-    //   const users = await response.json();
-    //   return users.length > 0;
-    // } catch (error) {
-    //   console.error("Failed to check username:", error);
-    //   return false;
-    // }
+    try {
+      const response = await fetch(`/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: username }),
+      });
+      if (response.ok) {
+        console.log("Login successful");
+        return true;
+      } else {
+        console.error("Failed to add user:", response.statusText);
+      }
+
+      c;
+    } catch (error) {
+      console.error("Failed to check username:", error);
+      return false;
+    }
   }
 
   async function loginUser(username) {

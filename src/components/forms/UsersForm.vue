@@ -14,7 +14,7 @@ const userId = ref(null);
 
 function handleSubmit() {
   if (isEditing.value) {
-    usersStore.editUser(userId.value, { username: username.value });
+    usersStore.editUser(userId.value, { username: username.value.trim() });
   } else {
     usersStore.addUser({ username: username.value });
   }
@@ -40,6 +40,13 @@ watch(
   },
   { immediate: true }
 );
+
+watch(username, (newValue) => {
+  if (newValue.trim() === "") {
+    isEditing.value = false;
+    userId.value = null;
+  }
+});
 </script>
 
 <template>
