@@ -1,4 +1,4 @@
-# Web 2 - Lab 2
+# Web 2 - Lab 5
 
 ## Postavljanje aplikacije
 
@@ -81,6 +81,11 @@ pnpm build
   - koristiti Firebase ili Back4App, Mocky, itd.
   - vlastiti storage, ili
   - možete mock napraviti, držati podatke u memoriji, ali mora biti asinkroni poziv/upis
+
+++ izrađemo pomoću mocky-a, dohvat u src/stores/usersStore.js
+
+![image](https://github.com/user-attachments/assets/ed967da4-8ad3-4e9c-9781-317166794ba8)
+
 
 - ostvariti asinkrono (lazy, po potrebi) učitavanje nekog dijela aplikacije (stranice ili komponente)
 
