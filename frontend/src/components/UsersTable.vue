@@ -21,7 +21,7 @@ function editUser(user) {
 }
 
 function deleteUser(id) {
-  authStore.deleteUser(id);
+  usersStore.deleteUser(id);
 }
 </script>
 
