@@ -1,4 +1,4 @@
-# Web 2 - Lab 2
+# Web 2 - Lab 5
 
 ## Postavljanje aplikacije
 
