@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import UsersForm from "@/components/UsersForm.vue";
+import UsersForm from "@/components/forms/UsersForm.vue";
 import UsersTable from "@/components/UsersTable.vue";
 
 const selectedUser = ref(null);
